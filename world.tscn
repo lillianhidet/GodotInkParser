@@ -5,18 +5,40 @@
 [ext_resource type="PackedScene" uid="uid://cymwdgqgw3sm4" path="res://Scenes/text_label.tscn" id="3_m3vsh"]
 [ext_resource type="PackedScene" uid="uid://cc6pptusx66b6" path="res://Scenes/choice_label.tscn" id="4_usx0r"]
 
-[node name="Control" type="Control"]
+[node name="Root" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="StoryUI" parent="." instance=ExtResource("1_gksi5")]
 layout_mode = 1
+mouse_filter = 2
+
+[node name="HBoxContainer" parent="StoryUI" index="0"]
+mouse_filter = 2
+
+[node name="Center" parent="StoryUI/HBoxContainer" index="1"]
+mouse_filter = 2
+
+[node name="ColorRect" parent="StoryUI/HBoxContainer/Center" index="0" node_paths=PackedStringArray("story")]
+mouse_filter = 0
+story = NodePath("../../../../storyManager")
+
+[node name="ScrollContainer" parent="StoryUI/HBoxContainer/Center" index="1"]
+mouse_filter = 2
+
+[node name="MarginContainer" parent="StoryUI/HBoxContainer/Center/ScrollContainer" index="0"]
+mouse_filter = 2
+
+[node name="storyContainer" parent="StoryUI/HBoxContainer/Center/ScrollContainer/MarginContainer" index="0"]
+mouse_filter = 2
 
 [node name="storyManager" parent="." node_paths=PackedStringArray("storyNode") instance=ExtResource("2_yn4ss")]
+unique_name_in_owner = true
 storyNode = NodePath("../StoryUI/HBoxContainer/Center/ScrollContainer/MarginContainer/storyContainer")
 textScene = ExtResource("3_m3vsh")
 choiceScene = ExtResource("4_usx0r")

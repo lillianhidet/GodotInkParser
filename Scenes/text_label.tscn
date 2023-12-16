@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://cymwdgqgw3sm4"]
 
 [node name="TextLabel" type="RichTextLabel"]
+modulate = Color(1, 1, 1, 0)
+mouse_filter = 2
 text = "Standard Text"
 fit_content = true
 scroll_active = false

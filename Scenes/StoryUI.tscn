@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://bxwmrev7mxrq8"]
+[gd_scene load_steps=2 format=3 uid="uid://bxwmrev7mxrq8"]
+
+[ext_resource type="Script" path="res://Scenes/ClickDetection.cs" id="1_u0bay"]
 
 [node name="StoryUI" type="Control"]
 layout_mode = 3
@@ -34,7 +36,9 @@ size_flags_horizontal = 3
 [node name="ColorRect" type="ColorRect" parent="HBoxContainer/Center"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 color = Color(0.419608, 0.419608, 0.419608, 1)
+script = ExtResource("1_u0bay")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/Center"]
 clip_contents = false

@@ -24,6 +24,10 @@ public partial class storyManager : Node2D
 
 	private List<RichTextLabel> currentChoices;
 
+	private bool awaitingDecision = false;
+
+
+	//Create a stack for tweening object opacity, only releasing one object per set interval?
 
 	// For testing purposes only, replace this with an external hook
 	public override void _Ready(){
@@ -35,20 +39,26 @@ public partial class storyManager : Node2D
 
 	}
 
+
+	public void recieveContine(){
+		if(!awaitingDecision){
+			continueStory();
+		}
+	}
 	
 
 	public void continueStory(){
 
 		if(story.canContinue){
+
 			createText(story.Continue());
 
-			if(story.currentChoices != null){
-				handleChoices(story.currentChoices);
-			}
+		}else if(story.currentChoices != null){
 
+			handleChoices(story.currentChoices);
 
+	
 		}
-
 	}
 
 	private void createText(String text){
@@ -57,9 +67,18 @@ public partial class storyManager : Node2D
 		instance.ParseBbcode(text);
 		storyNode.AddChild(instance);
 
+		//Fade in
+		fadeIn(instance);
+
+		
+
 	}
 
+
+
 	private void handleChoices(List<Choice> choices){
+
+		awaitingDecision = true;
 
 		currentChoices = new List<RichTextLabel>();
 
@@ -76,8 +95,10 @@ public partial class storyManager : Node2D
 
 		RichTextLabel instance = (RichTextLabel) choiceScene.Instantiate();
 		instance.Text = text;
-		Button bt = (Button) instance.GetChild(0); //Replace this with an explicit search for a button type child
+		Button bt = (Button) instance.GetChild(0); //Replace this with an explicit search for a button type child?
 		bt.Pressed += () => recieveChoiceInput(index);
+
+		fadeIn(instance);
 
 		currentChoices.Add((RichTextLabel)bt.GetParent());
 		storyNode.AddChild(instance);
@@ -86,7 +107,9 @@ public partial class storyManager : Node2D
 
 	}
 
-	public void recieveChoiceInput(int index){
+	private void recieveChoiceInput(int index){
+
+		awaitingDecision = false;
 
 		createText("[i]" + currentChoices[index].Text + "[/i]");
 
@@ -97,8 +120,20 @@ public partial class storyManager : Node2D
 		currentChoices.Clear(); //Not necessary but as a failsafe
 
 		story.ChooseChoiceIndex(index);
-		continueStory();
+		
+		
 
 
 	}
+
+	void fadeIn(RichTextLabel n){
+
+		Tween tween = GetTree().CreateTween();
+		tween.TweenProperty(n, "modulate", new Color(1,1,1,1), 5.0);
+
+
+	}
+
+
+
 }
