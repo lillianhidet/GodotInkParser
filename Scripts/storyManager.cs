@@ -65,6 +65,7 @@ public partial class storyManager : Node2D
 		
 		RichTextLabel instance = (RichTextLabel) textScene.Instantiate();
 		instance.ParseBbcode(text);
+		
 		storyNode.AddChild(instance);
 
 		//Fade in
