@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dilgywpx382ve"]
+
+[ext_resource type="Script" path="res://Scripts/storyManager.cs" id="1_vx7km"]
+
+[node name="storyManager" type="Node2D"]
+script = ExtResource("1_vx7km")
+json = "res://stories/testStory.json"

@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7hjgrmecw4md"]
+
+[ext_resource type="PackedScene" uid="uid://bxwmrev7mxrq8" path="res://Scenes/StoryUI.tscn" id="1_gksi5"]
+[ext_resource type="PackedScene" uid="uid://dilgywpx382ve" path="res://Scenes/story_manager.tscn" id="2_yn4ss"]
+[ext_resource type="PackedScene" uid="uid://cymwdgqgw3sm4" path="res://Scenes/text_label.tscn" id="3_m3vsh"]
+[ext_resource type="PackedScene" uid="uid://cc6pptusx66b6" path="res://Scenes/choice_label.tscn" id="4_usx0r"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StoryUI" parent="." instance=ExtResource("1_gksi5")]
+layout_mode = 1
+
+[node name="storyManager" parent="." node_paths=PackedStringArray("storyNode") instance=ExtResource("2_yn4ss")]
+storyNode = NodePath("../StoryUI/HBoxContainer/Center/ScrollContainer/MarginContainer/storyContainer")
+textScene = ExtResource("3_m3vsh")
+choiceScene = ExtResource("4_usx0r")
+
+[editable path="StoryUI"]

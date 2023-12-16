@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cymwdgqgw3sm4"]
+
+[node name="TextLabel" type="RichTextLabel"]
+text = "Standard Text"
+fit_content = true
+scroll_active = false

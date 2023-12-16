@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://bxwmrev7mxrq8"]
+
+[node name="StoryUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.411765, 0.403922, 0.537255, 1)
+
+[node name="Center" type="MarginContainer" parent="HBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer/Center"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.419608, 0.419608, 0.419608, 1)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/Center"]
+clip_contents = false
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Center/ScrollContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 10
+
+[node name="storyContainer" type="VBoxContainer" parent="HBoxContainer/Center/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer/MarginContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.380392, 0.415686, 0.529412, 1)
