@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cc6pptusx66b6"]
 
 [node name="ChoiceLabel" type="RichTextLabel"]
+bbcode_enabled = true
 text = "Standard Text"
 fit_content = true
 scroll_active = false

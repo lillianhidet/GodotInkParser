@@ -20,7 +20,9 @@ public partial class storyManager : Node2D
 	[Export]
 	PackedScene choiceScene;
 
-	Story story;
+	private Story story;
+
+	private List<RichTextLabel> currentChoices;
 
 
 	// For testing purposes only, replace this with an external hook
@@ -52,12 +54,14 @@ public partial class storyManager : Node2D
 	private void createText(String text){
 		
 		RichTextLabel instance = (RichTextLabel) textScene.Instantiate();
-		instance.Text = text;
+		instance.ParseBbcode(text);
 		storyNode.AddChild(instance);
 
 	}
 
 	private void handleChoices(List<Choice> choices){
+
+		currentChoices = new List<RichTextLabel>();
 
 		foreach(Choice c in choices){
 
@@ -75,6 +79,7 @@ public partial class storyManager : Node2D
 		Button bt = (Button) instance.GetChild(0); //Replace this with an explicit search for a button type child
 		bt.Pressed += () => recieveChoiceInput(index);
 
+		currentChoices.Add((RichTextLabel)bt.GetParent());
 		storyNode.AddChild(instance);
 
 
@@ -82,6 +87,14 @@ public partial class storyManager : Node2D
 	}
 
 	public void recieveChoiceInput(int index){
+
+		createText("[i]" + currentChoices[index].Text + "[/i]");
+
+		foreach(Node n in currentChoices){
+			n.QueueFree();
+		}
+
+		currentChoices.Clear(); //Not necessary but as a failsafe
 
 		story.ChooseChoiceIndex(index);
 		continueStory();
