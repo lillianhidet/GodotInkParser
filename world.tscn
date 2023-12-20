@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b7hjgrmecw4md"]
 
-[ext_resource type="PackedScene" uid="uid://bxwmrev7mxrq8" path="res://Scenes/StoryUI.tscn" id="1_gksi5"]
+[ext_resource type="PackedScene" uid="uid://bubivo38omc07" path="res://Scenes/StoryUI.tscn" id="1_gksi5"]
 [ext_resource type="PackedScene" uid="uid://dilgywpx382ve" path="res://Scenes/story_manager.tscn" id="2_yn4ss"]
 [ext_resource type="PackedScene" uid="uid://cymwdgqgw3sm4" path="res://Scenes/text_label.tscn" id="3_m3vsh"]
 [ext_resource type="PackedScene" uid="uid://cc6pptusx66b6" path="res://Scenes/choice_label.tscn" id="4_usx0r"]
@@ -39,6 +39,8 @@ mouse_filter = 2
 
 [node name="storyManager" parent="." node_paths=PackedStringArray("storyNode") instance=ExtResource("2_yn4ss")]
 unique_name_in_owner = true
+storyJson = "res://stories/testStory.json"
+varsJson = "res://stories/vars.json"
 storyNode = NodePath("../StoryUI/HBoxContainer/Center/ScrollContainer/MarginContainer/storyContainer")
 textScene = ExtResource("3_m3vsh")
 choiceScene = ExtResource("4_usx0r")
